@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pavan Kumar Paladugu — DevOps Consultant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:        #0a0e17;
+      --surface:   #111827;
+      --border:    #1e2d40;
+      --teal:      #00c2a8;
+      --teal-dim:  #00c2a820;
+      --blue:      #3b82f6;
+      --text:      #e2e8f0;
+      --muted:     #64748b;
+      --mono:      'JetBrains Mono', monospace;
+      --sans:      'Inter', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: #0a0e17cc;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--teal);
+      letter-spacing: 0.5px;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 40px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero-content { max-width: 680px; }
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--teal);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--teal);
+    }
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+    h1 .accent { color: var(--teal); }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: #94a3b8;
+      margin-bottom: 36px;
+      max-width: 560px;
+      line-height: 1.8;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .stat { text-align: left; }
+    .stat-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--teal);
+      font-family: var(--mono);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      padding: 11px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: #0a0e17;
+    }
+    .btn-primary:hover { background: #00d9bd; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* SECTIONS */
+    section {
+      padding: 80px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--teal);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 40px;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 40px;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      transition: border-color 0.2s;
+    }
+    .skill-card:hover { border-color: var(--teal); }
+    .skill-cat {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      font-family: var(--mono);
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      background: var(--teal-dim);
+      color: var(--teal);
+      border: 1px solid #00c2a830;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+    .tag.blue {
+      background: #3b82f610;
+      color: #93c5fd;
+      border-color: #3b82f630;
+    }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 32px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-meta { padding-top: 4px; }
+    .exp-period {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+    .exp-company {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .exp-location {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .exp-role {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+    .exp-bullets { list-style: none; padding: 0; }
+    .exp-bullets li {
+      font-size: 14px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-size: 10px;
+      top: 5px;
+    }
+
+    /* CERTS */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .cert-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .cert-card:hover { border-color: var(--teal); }
+    .cert-icon {
+      font-size: 28px;
+      min-width: 36px;
+    }
+    .cert-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .cert-issuer {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .cert-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--teal);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 600px;
+    }
+    .contact-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-item:hover { border-color: var(--teal); color: var(--teal); }
+    .contact-icon { font-size: 18px; }
+    .contact-label { font-size: 12px; color: var(--muted); }
+    .contact-val { font-size: 13px; font-weight: 500; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 32px 40px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .hero { padding: 90px 20px 40px; }
+      section { padding: 60px 20px; }
+      .divider { margin: 0 20px; }
+      .exp-item { grid-template-columns: 1fr; gap: 8px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">pavan@devops ~ $</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#certifications">Certs</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">DevOps Consultant @ Deloitte</div>
+    <h1>Pavan Kumar<br/><span class="accent">Paladugu</span></h1>
+    <div class="hero-sub">AWS · Terraform · Kubernetes · ECS Fargate · GitOps</div>
+    <div class="hero-desc">
+      Building and automating cloud infrastructure for enterprise AI platforms.
+      4+ years delivering multi-region AWS and Azure deployments, security-enforced
+      CI/CD pipelines, and GitOps workflows at scale.
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">AI Apps in Production</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">25+</div>
+        <div class="stat-label">Microservices on ECS Fargate</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">16</div>
+        <div class="stat-label">CI/CD Pipelines Designed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary">Get in Touch</a>
+      <a href="https://linkedin.com/in/pavankumarpaladugu" target="_blank" class="btn btn-outline">LinkedIn</a>
+      <a href="https://github.com/Solo7568" target="_blank" class="btn btn-outline">GitHub</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">What I Work With</div>
+  <h2>Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-cat">☁️ Cloud Platforms</div>
+      <div class="skill-tags">
+        <span class="tag">AWS</span><span class="tag">ECS Fargate</span>
+        <span class="tag">EKS</span><span class="tag">Lambda</span>
+        <span class="tag">SQS</span><span class="tag">S3</span>
+        <span class="tag">RDS</span><span class="tag">DynamoDB</span>
+        <span class="tag">VPC</span><span class="tag">WAF</span>
+        <span class="tag">GuardDuty</span><span class="tag">Cognito</span>
+        <span class="tag">KMS</span><span class="tag">Azure</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">⚙️ Infrastructure as Code</div>
+      <div class="skill-tags">
+        <span class="tag">Terraform</span><span class="tag">Ansible</span>
+        <span class="tag">Helm</span><span class="tag">HashiCorp Vault</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">🐳 Containers & Orchestration</div>
+      <div class="skill-tags">
+        <span class="tag">Docker</span><span class="tag">Kubernetes</span>
+        <span class="tag">AWS EKS</span><span class="tag">ECS Fargate</span>
+        <span class="tag">Azure AKS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">🔄 CI/CD & GitOps</div>
+      <div class="skill-tags">
+        <span class="tag blue">Jenkins</span><span class="tag blue">GitHub Actions</span>
+        <span class="tag blue">Azure DevOps</span><span class="tag blue">Argo CD</span>
+        <span class="tag blue">Bitbucket</span><span class="tag blue">JFrog Artifactory</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">🔒 Security & Code Quality</div>
+      <div class="skill-tags">
+        <span class="tag">AWS WAF</span><span class="tag">GuardDuty</span>
+        <span class="tag">Guardrail</span><span class="tag">SonarQube</span>
+        <span class="tag">Polaris SAST</span><span class="tag">Aqua Security</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">📊 Monitoring & Observability</div>
+      <div class="skill-tags">
+        <span class="tag blue">Prometheus</span><span class="tag blue">Grafana</span>
+        <span class="tag blue">CloudWatch</span><span class="tag blue">Azure Monitor</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">💻 Scripting & Databases</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span><span class="tag">Bash</span>
+        <span class="tag">Shell</span><span class="tag">PostgreSQL</span>
+        <span class="tag">DynamoDB</span><span class="tag">MySQL</span>
+        <span class="tag">ElastiCache</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-cat">🗃️ Version Control</div>
+      <div class="skill-tags">
+        <span class="tag blue">Git</span><span class="tag blue">GitHub</span>
+        <span class="tag blue">GitLab</span><span class="tag blue">Bitbucket</span>
+        <span class="tag blue">Azure Repos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-tag">Where I've Worked</div>
+  <h2>Experience</h2>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">May 2025 — Present</div>
+        <div class="exp-company">Deloitte</div>
+        <div class="exp-location">Hyderabad, India</div>
+      </div>
+      <div>
+        <div class="exp-role">Consultant — Cloud & DevOps Engineering</div>
+        <ul class="exp-bullets">
+          <li>Architected container infrastructure for 8 AI applications on AWS ECS Fargate, scaling the largest to 25 microservices in production</li>
+          <li>Designed 16 Jenkins and GitHub Actions CI/CD pipelines with SonarQube, Polaris SAST, and Aqua container scanning on every release</li>
+          <li>Integrated HashiCorp Vault and AWS Secrets Manager with Terraform for centralised credential storage and auto-rotation</li>
+          <li>Enforced platform security with AWS WAF, GuardDuty threat monitoring, and Guardrail policy controls across all services</li>
+          <li>Provisioned multi-environment, multi-region AWS infrastructure — ECS Fargate, ALB, RDS, DynamoDB, ElastiCache, SQS, KMS, Cognito, Route53</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Dec 2023 — May 2025</div>
+        <div class="exp-company">Movate Technologies</div>
+        <div class="exp-location">Chennai, India</div>
+      </div>
+      <div>
+        <div class="exp-role">DevOps Engineer</div>
+        <ul class="exp-bullets">
+          <li>Scaled AWS and Azure infrastructure across 3 regions with modular Terraform, improving platform capacity by 40%</li>
+          <li>Replaced manual release steps with Azure DevOps YAML pipelines, cutting deployment effort by 30%</li>
+          <li>Introduced GitOps on AWS EKS via Argo CD, enabling auditable rollouts with automatic rollback on failure</li>
+          <li>Built Prometheus and Grafana observability stack with SLO-based alerting for production incident detection</li>
+          <li>Mentored junior engineers on Terraform and Kubernetes, conducting code reviews across the team</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Oct 2021 — Dec 2023</div>
+        <div class="exp-company">Wipro Limited</div>
+        <div class="exp-location">Chennai, India</div>
+      </div>
+      <div>
+        <div class="exp-role">DevOps Engineer</div>
+        <ul class="exp-bullets">
+          <li>Wrote Terraform configurations for AWS VPC, EC2, S3, and RDS supporting 2 application teams</li>
+          <li>Configured Jenkins CI/CD pipelines with GitLab SCM integration for automated builds and deployments</li>
+          <li>Containerised workloads on AWS EKS using Docker and Kubernetes with Helm chart templates</li>
+          <li>Automated server configuration and package management with Ansible playbooks</li>
+          <li>Wrote infrastructure runbooks and onboarding documentation for team knowledge transfer</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-tag">Verified Skills</div>
+  <h2>Certifications</h2>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-icon">🏆</div>
+      <div>
+        <div class="cert-name">AWS Certified DevOps Engineer Professional</div>
+        <div class="cert-issuer">Amazon Web Services · DOP-C02</div>
+        <div class="cert-date">Jun 2026</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">✅</div>
+      <div>
+        <div class="cert-name">HashiCorp Certified: Terraform Associate</div>
+        <div class="cert-issuer">HashiCorp · 004</div>
+        <div class="cert-date">Apr 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag">Get In Touch</div>
+  <h2>Contact</h2>
+  <div class="contact-grid">
+    <a href="mailto:pavankumarpaladugu14@gmail.com" class="contact-item">
+      <div class="contact-icon">📧</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-val">pavankumarpaladugu14@gmail.com</div>
+      </div>
+    </a>
+    <a href="https://linkedin.com/in/pavankumarpaladugu" target="_blank" class="contact-item">
+      <div class="contact-icon">🔗</div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-val">linkedin.com/in/pavankumarpaladugu</div>
+      </div>
+    </a>
+    <a href="https://github.com/Solo7568" target="_blank" class="contact-item">
+      <div class="contact-icon">🐙</div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-val">github.com/Solo7568</div>
+      </div>
+    </a>
+    <a href="https://pavankumarpaladugu.notion.site/Pavan-Kumar-Paladugu-DevOps-Portfolio-38dc1428ee4e8040878ef95d8a69b20a" target="_blank" class="contact-item">
+      <div class="contact-icon">📋</div>
+      <div>
+        <div class="contact-label">Notion Portfolio</div>
+        <div class="contact-val">pavankumarpaladugu.notion.site</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Pavan Kumar Paladugu · DevOps Consultant @ Deloitte · Hyderabad, India
+</footer>
+
+</body>
+</html>
